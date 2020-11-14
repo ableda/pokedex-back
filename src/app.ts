@@ -26,6 +26,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(httpLogger);
 
 app.use(routes);
+
 app.use(notFound);
 app.use(errorHandler);
 

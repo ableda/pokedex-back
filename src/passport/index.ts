@@ -2,6 +2,7 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import UserModel from '../models/User';
+import { jwtConfig } from '../config/jwt';
 
 passport.use('signup', new LocalStrategy({
   usernameField : 'email',
@@ -42,10 +43,20 @@ passport.use('login', new LocalStrategy({
 }));
 
 passport.use(new JwtStrategy({
-  secretOrKey : 'top_secret', // Add as an environment variable
-  jwtFromRequest : ExtractJwt.fromUrlQueryParameter('secret_token')
+  secretOrKey : jwtConfig.jwtSecret, // Add as an environment variable
+  jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken()
 }, async (token, done) => {
   try {
+
+    if (!token.user || !token.user._id) {
+      throw new Error('Bad bearer token');
+    }
+
+    const user = await UserModel.findById(token.user._id);
+    if (!user) {
+      throw new Error('Bad bearer token');
+    }
+
     return done(null, token.user);
   } catch (error) {
     done(error);
