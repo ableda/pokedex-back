@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import passport from 'passport';
+import passport from '../passport';
 import { sign } from 'jsonwebtoken';
 
 const router: Router = Router();
@@ -27,7 +27,9 @@ router.post('/login', async (req, res, next) => {
         const token = sign({ user : body }, 'top_secret');
         //Send back the token to the user
         return res.json({ token });
-      });     } catch (error) {
+      });
+
+     } catch (error) {
       return next(error);
     }
   })(req, res, next);

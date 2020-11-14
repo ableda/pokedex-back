@@ -10,8 +10,8 @@ import mongoose from 'mongoose';
 
 const app = express();
 
-mongoose.connect('mongodb://127.0.0.1:27017/passport-jwt', { useMongoClient : true });
-mongoose.connection.on('error', error => console.log(error) );
+mongoose.connect(process.env.MONGO_DB_CONNECTION || 'mongodb://root:password@mongodb:27017/passport_auth_dev');
+mongoose.connection.on('error', error => console.log(`Mongoose error ${error}`) );
 mongoose.Promise = global.Promise;
 
 app.use(helmet());

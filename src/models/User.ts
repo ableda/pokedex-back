@@ -1,4 +1,4 @@
-import { Typegoose, prop, pre } from 'typegoose';
+import { Typegoose, prop, pre, instanceMethod } from 'typegoose';
 import { hash, compare } from 'bcrypt';
 
 @pre<User>('save', async function(next) {
@@ -16,7 +16,8 @@ class User extends Typegoose {
   @prop()
   password!: string;
 
-  async isValidPassword(password: string) {
+  @instanceMethod
+  public async isValidPassword(password: string) {
     return compare(password, this.password);
   }
 }
