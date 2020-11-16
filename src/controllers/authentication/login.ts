@@ -19,7 +19,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         // Sign the JWT token and populate the payload with the user email and id
         const token = sign({ user : body }, jwtConfig.jwtSecret, { expiresIn: jwtConfig.jwtExpiration });
 
-        return res.json({ token });
+        return res.cookie('jwt', token, { httpOnly: true }).json({ token });
       });
 
      } catch (error) {

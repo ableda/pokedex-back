@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
@@ -9,6 +10,10 @@ passport.use('signup', new LocalStrategy({
   passwordField : 'password'
 }, async (email, password, done) => {
     try {
+      const userWithEmail = await UserModel.findOne({ email });
+      if (userWithEmail) {
+        throw new Error('User already exists');
+      }
       // Save the information provided by the user to the the database
       const user = await UserModel.create({ email, password });
       // Send the user information to the next middleware
@@ -44,8 +49,9 @@ passport.use('login', new LocalStrategy({
 
 passport.use(new JwtStrategy({
   secretOrKey : jwtConfig.jwtSecret, // Add as an environment variable
-  jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken()
-}, async (token, done) => {
+  jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken(),
+  passReqToCallback: true
+}, async (req: Request, token, done: Function) => {
   try {
 
     if (!token.user || !token.user._id) {
@@ -57,6 +63,7 @@ passport.use(new JwtStrategy({
       throw new Error('Bad bearer token');
     }
 
+    req.user = user;
     return done(null, token.user);
   } catch (error) {
     done(error);

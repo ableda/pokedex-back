@@ -19,6 +19,10 @@ export const getUserPokedex = async (req: Request, res: Response, next: NextFunc
   try {
     const userId = req.query.userId;
 
+    if (req.user && req.user['_id'] !== userId) {
+      throw new Error('You can only access your own resources');
+    }
+
     if (!userId) {
       throw new Error('User id query param undefined');
     }
