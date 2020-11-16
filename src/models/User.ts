@@ -9,7 +9,7 @@ import { hash, compare } from 'bcrypt';
   next();
 })
 
-class User extends Typegoose {
+export class User extends Typegoose {
   @prop({ required: true })
   email!: string;
 
@@ -22,4 +22,4 @@ class User extends Typegoose {
   }
 }
 
-export default new User().getModelForClass(User);
+export const UserModel =  new User().getModelForClass(User);

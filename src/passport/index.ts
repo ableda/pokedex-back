@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
-import UserModel from '../models/User';
+import { UserModel } from '../models/User';
 import { jwtConfig } from '../config/jwt';
 
 passport.use('signup', new LocalStrategy({

@@ -14,12 +14,11 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
       req.login(user, { session : false }, async (error) => {
         if( error ) return next(error)
-        //We don't want to store the sensitive information such as the
-        //user password in the token so we pick only the email and id
+
         const body = { _id : user._id, email : user.email };
-        //Sign the JWT token and populate the payload with the user email and id
-        const token = sign({ user : body }, jwtConfig.jwtSecret);
-        //Send back the token to the user
+        // Sign the JWT token and populate the payload with the user email and id
+        const token = sign({ user : body }, jwtConfig.jwtSecret, { expiresIn: jwtConfig.jwtExpiration });
+
         return res.json({ token });
       });
 
