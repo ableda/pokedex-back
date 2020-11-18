@@ -16,6 +16,12 @@ interface PokemonBase {
   Speed: number;
 }
 
+export interface PokemonResponse {
+  name: string;
+  type: string[];
+  base?: PokemonBase;
+}
+
 export class Pokemon extends Typegoose {
   @prop()
   name!: PokemonName;

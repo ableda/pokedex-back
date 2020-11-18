@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Pokedex } from '../../models/Pokedex';
 import PokedexService from '../../services/pokedexService';
+import { Languages } from '../../types/language';
 
 export const createPokedex = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -27,14 +28,17 @@ export const getUserPokedex = async (req: Request, res: Response, next: NextFunc
       throw new Error('User id query param undefined');
     }
 
+    let language = req.query.language;
+    if (!language || !Object.values(Languages).includes(language as Languages)) {
+      language = Languages.english;
+    }
+
     const pokedexService = new PokedexService();
-
-    console.log(req.params, 'user id', userId);
-
-    const response = await pokedexService.getUserPokedex(userId as string);
+    const response = await pokedexService.getUserPokedex(userId as string, language as string);
 
     res.json(response);
   } catch(error) {
+    console.log('Sending error to next');
     next(error);
   }
 };

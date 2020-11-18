@@ -7,16 +7,16 @@ import { jwtConfig } from '../config/jwt';
 
 passport.use('signup', new LocalStrategy({
   usernameField : 'email',
-  passwordField : 'password'
+  passwordField : 'password',
 }, async (email, password, done) => {
     try {
       const userWithEmail = await UserModel.findOne({ email });
+
       if (userWithEmail) {
         throw new Error('User already exists');
       }
-      // Save the information provided by the user to the the database
+
       const user = await UserModel.create({ email, password });
-      // Send the user information to the next middleware
       return done(null, user);
     } catch (error) {
       done(error);
@@ -28,7 +28,7 @@ passport.use('login', new LocalStrategy({
   passwordField : 'password'
 }, async (email, password, done) => {
   try {
-    // Find the user associated with the email provided by the user
+
     const user = await UserModel.findOne({ email });
     if (!user) {
       return done(null, false, { message : 'User not found'});
@@ -48,7 +48,7 @@ passport.use('login', new LocalStrategy({
 }));
 
 passport.use(new JwtStrategy({
-  secretOrKey : jwtConfig.jwtSecret, // Add as an environment variable
+  secretOrKey : jwtConfig.jwtSecret,
   jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken(),
   passReqToCallback: true
 }, async (req: Request, token, done: Function) => {

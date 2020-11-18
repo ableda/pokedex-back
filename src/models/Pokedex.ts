@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { Pokemon } from './Pokemon';
+import { Schema, Document, model, Model } from 'mongoose';
+import { Pokemon, PokemonResponse } from './Pokemon';
 
 export interface PokedexInput {
   userId: string;
@@ -11,17 +11,27 @@ export interface Pokedex {
   pokemons: Pokemon[];
 }
 
+export interface PokedexResponse {
+  userId: string;
+  pokemons: PokemonResponse[];
+}
+
+export interface PokedexDocument extends Document {
+  userId: string;
+  pokemons: Pokemon[];
+}
+
 // Typegoose does not do array of references properly
-const PokedexSchema = new mongoose.Schema({
+const PokedexSchema = new Schema({
   title: String,
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User'
   },
   pokemons: [{
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Pokemon'
   }]
 });
 
-export const PokedexModel = mongoose.model('Pokedex', PokedexSchema);
+export const PokedexModel = model('Pokedex', PokedexSchema) as Model<PokedexDocument, {}>

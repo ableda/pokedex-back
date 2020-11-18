@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "37058d74-cb6e-4031-ad6f-745c049de39a",
+		"name": "Pokedex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Seed Pokemons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmYjE3MWM5MWVjNzM0MDJlMmYzNzQ0ZiIsImVtYWlsIjoiYWxleGJsZWRhMUBnbWFpbC5jb20ifSwiaWF0IjoxNjA1NDY0NTI0fQ.UlMyGIgoMbjpfyw5prRkcrU4BihDUjdQ-pWxx4IkkT4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/pokemon/seed",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"pokemon",
+						"seed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokedex",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmYjJlMjIyODM5ZDBkMDAzYWQ1ZmU1MCIsImVtYWlsIjoiYWxleGJsZWRhMUBnbWFpbC5jb20ifSwiaWF0IjoxNjA1NzAxMjI3LCJleHAiOjE2MDU3MDg0Mjd9.B-8FKp4kwqRmDfUZTNAaJ-w264kM_qx8JoCUZXm4aNk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"5fb2e222839d0d003ad5fe50\",\n    \"pokemons\": [\"5fb2bf95805c81002054ce9d\", \"5fb2bf95805c81002054cea0\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/pokedex",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"pokedex"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokemons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmYjE3MWM5MWVjNzM0MDJlMmYzNzQ0ZiIsImVtYWlsIjoiYWxleGJsZWRhMUBnbWFpbC5jb20ifSwiaWF0IjoxNjA1NDY0NTI0fQ.UlMyGIgoMbjpfyw5prRkcrU4BihDUjdQ-pWxx4IkkT4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/pokemon",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"pokemon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Truncate Pokemons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmYjE3MWM5MWVjNzM0MDJlMmYzNzQ0ZiIsImVtYWlsIjoiYWxleGJsZWRhMUBnbWFpbC5jb20ifSwiaWF0IjoxNjA1NDY0NTI0fQ.UlMyGIgoMbjpfyw5prRkcrU4BihDUjdQ-pWxx4IkkT4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/pokemon/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"pokemon",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Pokedex by user id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmYjJlMjIyODM5ZDBkMDAzYWQ1ZmU1MCIsImVtYWlsIjoiYWxleGJsZWRhMUBnbWFpbC5jb20ifSwiaWF0IjoxNjA1NzAwOTI2LCJleHAiOjE2MDU3MDgxMjZ9.1QQwAKhHLJzVgMWjxCtZssPdV6DF8-6t-d-66JJBH6w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/pokedex?userId=5fb2e222839d0d003ad5fe50",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"pokedex"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "5fb2e222839d0d003ad5fe50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Pokedex by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmYjJiOTU3ODUwNWRiMDAyMDMxMDllOSIsImVtYWlsIjoiYWxleGJsZWRhMUBnbWFpbC5jb20ifSwiaWF0IjoxNjA1NTQ4MzkyLCJleHAiOjE2MDU1NTU1OTJ9.D68PrZfsgy09oUW_LZivYynQinFA5GVcuxahYwe7Nb8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pokemons\": [\"5fb2bce135c988003092c098\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/pokedex/5fb1b375b42c6c07eda0479a",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"pokedex",
+						"5fb1b375b42c6c07eda0479a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Pokemon by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/pokemon/5fb2bf95805c81002054ce9d",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"pokemon",
+						"5fb2bf95805c81002054ce9d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Pokedex by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVmYjE3MWM5MWVjNzM0MDJlMmYzNzQ0ZiIsImVtYWlsIjoiYWxleGJsZWRhMUBnbWFpbC5jb20ifSwiaWF0IjoxNjA1NTQ3MzM5LCJleHAiOjE2MDU1NTQ1Mzl9.tiBxdMXCRNyHwGfck9BDyzIhl5XqB2pMYT8bnMVvA9Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/pokedex/5fb1b3128ba1ba07b74edaf0",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"pokedex",
+						"5fb1b3128ba1ba07b74edaf0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"john.smith@mail.com\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"alexbleda1@gmail.com\",\n    \"password\": \"test12\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

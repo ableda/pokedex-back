@@ -1,8 +1,11 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { get, isEmpty } from 'lodash';
 import logger from '../logger';
 
-function errorHandler(error: Error, req: Request, res: Response): void {
+const errorHandler = (error: Error, req: Request, res: Response, next: NextFunction): void => {
+
+  console.log('error handler: ', error);
+
   const message = error.message || 'Something went wrong';
   const statusCode = get(error, 'statusCode', 500);
   const reqBody = !isEmpty(req.body) ? `- Request Body: ${JSON.stringify(req.body)}` : '';

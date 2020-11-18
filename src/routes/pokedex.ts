@@ -3,8 +3,9 @@ import { createPokedex, deletePokedex, getUserPokedex, updatePokedex } from '../
 
 const router: Router = Router();
 
-router.post('/pokedex', createPokedex)
-router.get('/pokedex', getUserPokedex)
+router.post('/pokedex', createPokedex);
+
+router.get('/pokedex', getUserPokedex);
 
 router.put('/pokedex/:pokedexId', updatePokedex);
 

@@ -2,15 +2,37 @@
 
 Using Nodejs, Express, Typescript, Passport, MongoDb, Docker
 
-## Setup
+## Server Setup
 
-Copy over environment variables from .env.example to .env
+Copy over environment variables from
+
+`cp .env.example .env`
 
 Run:
 
 `docker-compose up`
 
-After that you should be able to use /signup and /login routes. Token will be given to the signed in user to simulate session
+## Data Setup
+
+Use the postman collection on the folder to initialize the pokemon data and create your pokedex
+
+1) Seed the pokemons: GET /pokemon/seed
+
+You can verify the data with the get all pokemons route GET /pokemon
+
+1) SignUp with an email and password of your choice:  POST /signup
+
+2) Login to obtain your access token and your user id: POST /login
+
+3) Create your pokedex with your token, user id and the pokemon ids of your favorite pokemons POST /pokedex
+
+4) Get your pokedex with your token and userId: GET /pokedex
+
+
+### Note
+
+This is meant to be the backend for a front-end application. Link to React front end coming soon.
+
 
 ## Background
 

@@ -1,22 +1,39 @@
-import mongoose from 'mongoose';
+import { Model } from 'mongoose';
 import axios from 'axios';
 import { config } from '../config';
-import { Pokemon, PokemonModel } from '../models/Pokemon';
+import { Pokemon, PokemonModel, PokemonResponse } from '../models/Pokemon';
 
 export default class PokemonService {
 
-  private readonly pokemonModel: mongoose.Model<any, {}>;
+  private readonly pokemonModel: Model<InstanceType<any>, {}>;
+  private language: string;
 
-  constructor() {
+  constructor(language: string) {
+    this.language = language;
     this.pokemonModel = PokemonModel;
   }
 
-  public async getAllPokemons(): Promise<any> {
-    return this.pokemonModel.find({}, { name: 1, type: 1 });
+  public async getAllPokemons(): Promise<PokemonResponse[]> {
+    const pokemons = await this.pokemonModel.find({}, { name: 1, type: 1 });
+
+    return pokemons.map((pokemon) => {
+      return {
+        _id: pokemon._id,
+        name: pokemon.name[this.language],
+        type: pokemon.type,
+      }
+    });
   }
 
-  public async getPokemon(pokemonId: string): Promise<any> {
-    return this.pokemonModel.findById(pokemonId);
+  public async getPokemon(pokemonId: string): Promise<PokemonResponse | null> {
+    const pokemonQuery = await this.pokemonModel.findById(pokemonId);
+
+    if (!pokemonQuery) return null;
+
+    return {
+      ...pokemonQuery._doc,
+      name: pokemonQuery._doc.name[this.language]
+    };
   }
   
   public async seedPokemons(): Promise<any> {
