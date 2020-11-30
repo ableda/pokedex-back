@@ -7,6 +7,8 @@ import errorHandler from './middleware/errorHandler';
 import notFound from './middleware/notFound';
 import { httpLogger } from './middleware/httpLogger';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 const app = express();
 
@@ -18,6 +20,8 @@ app.use(helmet());
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser())
+app.use(cors({ credentials: true, origin: true }));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));

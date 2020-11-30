@@ -13,10 +13,13 @@ export default class PokedexService {
     return this.pokedexModel.create(pokedex);
   }
 
-  public async getUserPokedex(userId: string, language: string): Promise<PokedexResponse | null> {
+  public async getUserPokedex(userId: string, language: string): Promise<PokedexResponse | PokedexDocument> {
     const userPokedex = await this.pokedexModel.findOne({ userId }).populate('pokemons');
 
-    if (!userPokedex) return null;
+    // Create pokedex for user if it does not exist
+    if (!userPokedex) {
+      return this.createPokedex({ userId: userId, pokemons: []})
+    }
 
     return {
       userId: userPokedex.userId,
@@ -31,7 +34,11 @@ export default class PokedexService {
   }
 
   public async updatePokedex(pokedexId: string, newPokedex: Pokedex): Promise<any> {
-    return this.pokedexModel.findByIdAndUpdate(pokedexId, newPokedex);
+    const currentPokedex = await this.pokedexModel.findOne({ _id: pokedexId });
+    if (currentPokedex) {
+      return this.pokedexModel.updateOne({ _id: pokedexId }, { ...currentPokedex, ...newPokedex })
+    }
+    // return this.pokedexModel.findByIdAndUpdate(pokedexId, newPokedex);
   }
 
   public async deletePokedex(pokedexId: string): Promise<any> {
